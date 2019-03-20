@@ -8,14 +8,13 @@ var keys = require('./keys.js');
 var spotify = new Spotify(keys.spotify);
 
 function spotifyThis(flag, str){
-	console.log(str);
 	var songTitle = process.argv.slice(3).join(' ').trim();
-	console.log(songTitle, 'song');
-	if (flag){
-		songTitle = str;
-	}
+	
 	if(songTitle==''){
 		songTitle = "And when i Die";
+	}
+	if (flag){
+		songTitle = str;
 	}
 
 	spotify.search(
@@ -23,19 +22,22 @@ function spotifyThis(flag, str){
 		type:'track',
 		query:songTitle
 	},function(error, resp){
-		console.log(resp);
 		if(error){
-			return console.log("Error Message" + error);
+			return console.log("Error Message :" + error);
 		}
-		var nameOfArtist = '';
-		for(var i =0; i <resp.tracks.items[0].nameOfArtist.length; i++ ){
-			nameOfArtist += resp.tracks.items[0].nameOfArtist[i].name;
+		var artists = '';
+		for(var i =0; i <resp.tracks.items[0].artists.length; i++ ){
+			artists += resp.tracks.items[0].artists[i].name;
 		}
-		console.log(nameOfArtist);
+		console.log("Name of Artist(s) :"+artists);
+		console.log("Name of the Album :" +resp.tracks.items[0].album.name);
+		console.log("Name of the Song :"+ resp.tracks.items[0].name);
+		console.log("Name of URL:" + resp.tracks.items[0].preview_url);
 		//fs.appendFileSync('log.txt',nameOfArtist);
 	})
 }
 function concertThis(flag, str){
+	//ameOfBand= process.argv
 
 	console.log('function concertThis triggered')
 
