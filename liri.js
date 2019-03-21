@@ -37,9 +37,21 @@ function spotifyThis(flag, str){
 	})
 }
 function concertThis(flag, str){
-	//ameOfBand= process.argv
-
-	console.log('function concertThis triggered')
+	nameOfBand= process.argv.slice('3').join(' ').trim();
+	var url = "https://rest.bandsintown.com/artists/"+ nameOfBand + "/events?app_id=codingbootcamp";
+	request(url, function(error, resp, body){
+		if(JSON.parse(body).length==0){
+			console.log('There is no events for '+ nameOfBand);
+		}
+		for (var i=0;i<JSON.parse(body).length;i++){
+			var location= JSON.parse(body)[i].venue.country;
+			var venue = JSON.parse(body)[i].venue.name;
+			var date=moment(JSON.parse(body)[i].datetime).format("MM/DD/YYYY");
+			console.log("Venue location is in " + location +','+ JSON.parse(body)[i].venue.city+"is the city");
+			console.log("Venue Name is : "+ venue);
+			console.log("Event is on : "+ date);
+		}
+	})
 
 }
 function movieThis(flag, str){
