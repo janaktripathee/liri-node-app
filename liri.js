@@ -33,7 +33,6 @@ function spotifyThis(flag, str){
 		console.log("Name of the Album :" +resp.tracks.items[0].album.name);
 		console.log("Name of the Song :"+ resp.tracks.items[0].name);
 		console.log("Name of URL:" + resp.tracks.items[0].preview_url);
-		fs.appendFileSync('log.txt',nameOfArtist);
 	})
 }
 function concertThis(flag, str){
@@ -92,7 +91,21 @@ function movieThis(flag, str){
 
 }
 function doIt(){
-	console.log('function doIt triggered')
+	var content = fs.readFileSync('random.txt','utf8').split(',');
+	switch(content[0]){
+		case 'concert-this':
+		concertThis(true, content[1]);
+		break;
+
+		case "spotify-this-song":
+		spotifyThis(true, content[1]);
+		break;
+
+		case "movie-this":
+		movieThis(true, content[1]);
+		break;
+
+	}
 
 }
 
