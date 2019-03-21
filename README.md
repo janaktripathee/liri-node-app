@@ -6,9 +6,9 @@ Liri is the command line node app which takes in user input parameters and gives
 * spotify-this-song
 * do-what-it-says
 
-# Demo of the app can be found in :
+#### Demo of the app can be found in
 
-### movie-this <movie name>
+### movie-this < movie name >
 	This command makes the request to the OMDB API via the axious packages. IT gives us back the result like:
 
 	* Title of the Movie
@@ -22,4 +22,11 @@ Liri is the command line node app which takes in user input parameters and gives
     * Rating
     * Rotten Tomatoes Rating
 
-    If the user does not specify the movie name , it will print information of the movie "The Matrix"
+    If the user does not specify the movie name , it will print information of the movie "The Matrix" 
+
+### concert this < concert name >
+	This command makes the request to the Bands In Town API. It gives us back the result like:
+
+	* Venue Name and the city Name
+    * Venue Name
+    * Event Date
